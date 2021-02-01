@@ -13,6 +13,9 @@ public class Menu {
 		opcao=0;
 		
 		do {
+			//Imprime na tela o desenho de um tabuleiro de Jogo da Velha
+			Tabuleiro.imagemTabuleiro();
+			
 			System.out.println("   ++++++++++++++++++");
 			System.out.println("   +                +");
 			System.out.println("   +   1 - Jogar    +");
@@ -25,7 +28,6 @@ public class Menu {
 			
 			switch (opcao) {
 			case 1:
-				Tabuleiro.tabuleiro();
 				Jogo.jogo();
 				
 				break;

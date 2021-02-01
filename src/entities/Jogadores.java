@@ -1,13 +1,19 @@
 package entities;
 
 public class Jogadores {
-	private String nome,peca;
-	private Integer posicao;
+	public String nome,peca;
+	public Integer posicao;
 
 	public Jogadores(String nome, String peca) {
-		super();
 		this.nome = nome;
 		this.peca = peca;
+	}
+	public Jogadores(String nome) {
+		this.nome = nome;
+
+	}
+	public Jogadores() {
+
 	}
 
 	public String getNome() {
