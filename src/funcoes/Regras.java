@@ -98,7 +98,7 @@ public class Regras {
 				&& (Tabuleiro.mat[2][0] != "n") && (Tabuleiro.mat[1][1] != "n") && (Tabuleiro.mat[0][2] != "n")) {
 
 			System.out.println("Houve um empate!");
-			finaliza = 1;
+			finaliza = 2;
 		}
 	}
 }

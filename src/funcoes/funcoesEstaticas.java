@@ -6,7 +6,7 @@ import entities.Tabuleiro;
 
 public class funcoesEstaticas {
 	public static String jogador, peca;
-	public static Integer selecao, position, decisao;
+	public static Integer selecao, position, decisao, empate = 0;
 	public static Scanner sc = new Scanner(System.in);
 
 	// Função para selecionar opção através de string
@@ -53,6 +53,36 @@ public class funcoesEstaticas {
 		peca = sc.nextLine();
 		System.out.println();
 		return peca;
+	}
+
+	// Define placar
+	public static void placar(String j1, String j2, Integer p1, Integer p2, Integer e) {
+		System.out.println("\n###Placar###");
+		System.out.println("Jogador " + j1.toUpperCase() + ":" + p1);
+		System.out.println("Jogador " + j2.toUpperCase() + ":" + p2);
+		System.out.println("Empates: " + e);
+		System.out.println();
+	}
+
+	// Faz a comparação e informa quem ganhou mais vezes
+	public static void placarFinal(String j1, String j2, Integer p1, Integer p2, Integer e) {
+		if (p1 > p2) {
+			System.out.println("O jogador " + j1.toUpperCase() + " ganhou a partida");
+			System.out.println("Pontos do jogador " + j1.toUpperCase() + ": " + p1);
+			System.out.println("Pontos do jogador " + j2.toUpperCase() + ": " + p2);
+			System.out.println("Empates: " + e);
+		} else if (p2 > p1) {
+			System.out.println("O jogador " + j2.toUpperCase() + " ganhou a partida");
+			System.out.println("Pontos do jogador " + j2.toUpperCase() + ": " + p2);
+			System.out.println("Pontos do jogador " + j1.toUpperCase() + ": " + p1);
+			System.out.println("Empates: " + e);
+		} else {
+			System.out.println("O jogo empatou!");
+			System.out.println("Pontos do jogador " + j2.toUpperCase() + ": " + p2);
+			System.out.println("Pontos do jogador " + j1.toUpperCase() + ": " + p1);
+			System.out.println("Empates: " + e);
+		}
+
 	}
 
 	// Função para validar peça

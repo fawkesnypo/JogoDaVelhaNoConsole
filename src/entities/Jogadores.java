@@ -2,7 +2,7 @@ package entities;
 
 public class Jogadores {
 	public String nome, peca;
-	public Integer posicao;
+	public Integer posicao, placar = 0;
 
 	public Jogadores(String nome, String peca) {
 		this.nome = nome;

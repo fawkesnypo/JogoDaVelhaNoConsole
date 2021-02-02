@@ -51,16 +51,21 @@ public class Jogo {
 		System.out.println("O jogo é baseado em posições, conforme a imagem acima.");
 		System.out.println("Para colocar a peça (X ou O) basta informar o número da posição.");
 
-		funcoesEstaticas.decisao=0;
+		funcoesEstaticas.decisao = 0;
 		do {
 			Integer x = 0;
 			do {
 
 				if (funcoesEstaticas.decisao == 1) {
 					Tabuleiro.tabuleiro();
+					funcoesEstaticas.decisao = 0;
 				}
 
 				if (x == 0) {
+
+					// Exibe o placar
+					funcoesEstaticas.placar(j1.nome, j2.nome, j1.placar, j2.placar, funcoesEstaticas.empate);
+
 					System.out.printf("\n" + j1.nome.toUpperCase() + ", informe a posição a ser inserida a peça: ");
 					j1.posicao = sc.nextInt();
 					sc.nextLine();
@@ -78,9 +83,21 @@ public class Jogo {
 					// Verifica se os campos foram preenchido para verificação do ganhador
 					Regras.verificaPreenchimento(j1.peca, j1.nome);
 					x = Regras.finaliza;
+
+					if (x == 1) {
+						j1.placar += 1;
+					}
+
+					if (x == 2) {
+						funcoesEstaticas.empate += 1;
+					}
 				}
 
 				if (x == 0) {
+
+					// Exibe o placar
+					funcoesEstaticas.placar(j1.nome, j2.nome, j1.placar, j2.placar, funcoesEstaticas.empate);
+
 					System.out.printf("\n" + j2.nome.toUpperCase() + ", informe a posição a ser inserida a peça: ");
 					j2.posicao = sc.nextInt();
 
@@ -98,6 +115,14 @@ public class Jogo {
 					// Verifica se os campos foram preenchido para verificação do ganhador
 					Regras.verificaPreenchimento(j2.peca, j2.nome);
 					x = Regras.finaliza;
+
+					if (x == 1) {
+						j2.placar += 1;
+					}
+
+					if (x == 2) {
+						funcoesEstaticas.empate += 1;
+					}
 				}
 
 			} while (x == 0);
@@ -109,8 +134,16 @@ public class Jogo {
 				funcoesEstaticas.preencherTabuleiro();
 			}
 
+			else {
+				Regras.finaliza = 0;
+			}
+
 		} while (funcoesEstaticas.decisao == 1);
 
+		funcoesEstaticas.placarFinal(j1.nome, j2.nome, j1.placar, j2.placar, funcoesEstaticas.empate);
+		j1.placar = 0;
+		j2.placar = 0;
+		funcoesEstaticas.empate = 0;
 	}
 
 }
