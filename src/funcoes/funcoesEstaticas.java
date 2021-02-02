@@ -6,7 +6,7 @@ import entities.Tabuleiro;
 
 public class funcoesEstaticas {
 	public static String jogador, peca;
-	public static Integer selecao,position;
+	public static Integer selecao, position, decisao;
 	public static Scanner sc = new Scanner(System.in);
 
 	// Função para selecionar opção através de string
@@ -55,54 +55,54 @@ public class funcoesEstaticas {
 		return peca;
 	}
 
-	//Função para validar peça
-	public static String validaPeca(String p){
-		int i=0;
-		int x=0;
+	// Função para validar peça
+	public static String validaPeca(String p) {
+		int i = 0;
+		int x = 0;
 		peca = p;
-		
+
 		do {
-			
-			if (peca.contains("X")||peca.contains("O")) {
-				x=1;
+
+			if (peca.contains("X") || peca.contains("O")) {
+				x = 1;
 			}
-			
+
 			else {
 				System.out.println("Peça inválida!");
-				i=1;
+				i = 1;
 			}
-			
-			if (i==1) {
+
+			if (i == 1) {
 				System.out.printf("\nInforme uma peça válida: ");
-				peca=sc.nextLine().toUpperCase();
+				peca = sc.nextLine().toUpperCase();
 				validaPeca(peca);
 				System.out.println();
-				x=1;
+				x = 1;
 			}
-			
+
 			else {
-				x=1;
+				x = 1;
 			}
-			
-		} while (x==0);
-		
+
+		} while (x == 0);
+
 		return peca;
 	}
-	
+
 	// Valida que a posição informada é valida
 	public static Integer validaPosicao(Integer posicao) {
-		int i=0;
-		int x=0;
+		int i = 0;
+		int x = 0;
 		position = posicao;
 		do {
 
 			if (position > 9 || position < 1) {
 				System.out.println("Posição inválida!\n");
 				x = 0;
-				i=10;
+				i = 10;
 			}
-			
-			if (position <10 || position >0) {
+
+			if (position < 10 || position > 0) {
 
 				switch (position) {
 				case 1:
@@ -110,7 +110,7 @@ public class funcoesEstaticas {
 					if (Tabuleiro.mat[0][0] != "n") {
 						System.out.println("A posição já está ocupada!\n");
 						x = 0;
-						i=10;
+						i = 10;
 					}
 					break;
 
@@ -119,7 +119,7 @@ public class funcoesEstaticas {
 					if (Tabuleiro.mat[1][0] != "n") {
 						System.out.println("A posição já está ocupada!\n");
 						x = 0;
-						i=10;
+						i = 10;
 					}
 					break;
 
@@ -128,7 +128,7 @@ public class funcoesEstaticas {
 					if (Tabuleiro.mat[2][0] != "n") {
 						System.out.println("A posição já está ocupada!\n");
 						x = 0;
-						i=10;
+						i = 10;
 					}
 					break;
 
@@ -137,7 +137,7 @@ public class funcoesEstaticas {
 					if (Tabuleiro.mat[0][1] != "n") {
 						System.out.println("A posição já está ocupada!\n");
 						x = 0;
-						i=10;
+						i = 10;
 					}
 					break;
 
@@ -146,7 +146,7 @@ public class funcoesEstaticas {
 					if (Tabuleiro.mat[1][1] != "n") {
 						System.out.println("A posição já está ocupada!\n");
 						x = 0;
-						i=10;
+						i = 10;
 					}
 					break;
 
@@ -155,7 +155,7 @@ public class funcoesEstaticas {
 					if (Tabuleiro.mat[2][1] != "n") {
 						System.out.println("A posição já está ocupada!\n");
 						x = 0;
-						i=10;
+						i = 10;
 					}
 					break;
 
@@ -164,7 +164,7 @@ public class funcoesEstaticas {
 					if (Tabuleiro.mat[0][2] != "n") {
 						System.out.println("A posição já está ocupada!\n");
 						x = 0;
-						i=10;
+						i = 10;
 					}
 					break;
 
@@ -173,7 +173,7 @@ public class funcoesEstaticas {
 					if (Tabuleiro.mat[1][2] != "n") {
 						System.out.println("A posição já está ocupada!\n");
 						x = 0;
-						i=10;
+						i = 10;
 					}
 					break;
 
@@ -182,7 +182,7 @@ public class funcoesEstaticas {
 					if (Tabuleiro.mat[2][2] != "n") {
 						System.out.println("A posição já está ocupada!\n");
 						x = 0;
-						i=10;
+						i = 10;
 					}
 
 					break;
@@ -191,32 +191,63 @@ public class funcoesEstaticas {
 					break;
 				}
 			}
-			
-			if (i==10) {
+
+			if (i == 10) {
 				System.out.printf("Digite uma posição válida: ");
-				position=sc.nextInt();
+				position = sc.nextInt();
 				validaPosicao(position);
 				System.out.println();
-				x=1;
-			}
-			
-			if(i!=10) {
-				x=1;
+				x = 1;
 			}
 
+			if (i != 10) {
+				x = 1;
+			}
 
-		} while (x==0);
-		
+		} while (x == 0);
+
 		return position;
 	}
-	
-	//Preenche os campos do tabuleiro com N
+
+	// Preenche os campos do tabuleiro com N
 	public static void preencherTabuleiro() {
-		for (int i = 0; i <=2; i++) {
-			for (int j = 0; j <=2; j++) {
-				Tabuleiro.mat[i][j]="n";
-				
+		for (int i = 0; i <= 2; i++) {
+			for (int j = 0; j <= 2; j++) {
+				Tabuleiro.mat[i][j] = "n";
+
 			}
 		}
+	}
+
+	// Tratamento para opção de continuar o jogo
+	public static int desejaEncerrar() {
+		decisao = 0;
+		if (decisao == 0) {
+			do {
+				System.out.println("\nDeseja continuar? (s/n)");
+				char resp = sc.next().charAt(0);
+
+				if (resp == 'n' || resp == 'N') {
+					System.out.println();
+					decisao = 123;
+					sc.nextLine();
+				}
+
+				else if (!(resp == 's' || resp == 'S')) {
+					System.out.println("Opção inválida!");
+					decisao = -1;
+				}
+
+				else {
+					System.out.println();
+					decisao = 1;
+					sc.nextLine();
+				}
+
+			} while (decisao < 0);
+		}
+
+		return decisao;
+
 	}
 }
