@@ -1,12 +1,9 @@
 package funcoes;
 
-import java.util.Scanner;
-
 import entities.Tabuleiro;
 
 public class Menu {
 	public static Integer opcao;
-	static Scanner sc = new Scanner(System.in);
 
 	public static void menu() {
 
