@@ -280,4 +280,5 @@ public class funcoesEstaticas {
 		return decisao;
 
 	}
+
 }
